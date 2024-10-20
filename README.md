@@ -1,6 +1,6 @@
 # Unimelb MAST90106 & MAST90107 Data Science Project
 
-This project aims to solve a multi-knapsack problem, optimizing store space allocation to maximize profit while minimizing wastage.
+This project aims to solve a multi-knapsack problem, optimizing store space allocation to maximize profit (KPI1) while minimizing wastage (KPI2).
 
 This is a team project, and my work in this project is to implement a **Hopfield Neural Network (HNN) for Mixed Integer Programming**, which is used as an alternative to classical optimization techniques for its ability to handle complex constraints and explore large solution spaces.
 
