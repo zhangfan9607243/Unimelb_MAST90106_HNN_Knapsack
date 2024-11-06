@@ -1,10 +1,10 @@
 # Unimelb MAST90106 & MAST90107 Data Science Project - HNN Knapsack
 
-This project aims to solve a multi-knapsack problem, optimizing store space allocation to maximize profit (KPI1) while minimizing wastage (KPI2).
+This project is the capston project of Unimelb Master of Data Science program. The project team that I was in was assigned a project called "Solving Floor Space Allocation as a Large-Scale Optimisation Problem".
+
+This project aims to solve a multi-knapsack problem, optimizing store space allocation to maximize profit (KPI1) while minimizing wastage (KPI2), with a series of equality and inequality constrains.
 
 This is a team project, and my work in this project is to implement a **Hopfield Neural Network (HNN) for Mixed Integer Programming**, which is used as an alternative to classical optimization techniques for its ability to handle complex constraints and explore large solution spaces.
-
----
 
 ## Problem Statement
 
@@ -17,7 +17,6 @@ Retailers face constraints like limited shelf space, product placement prioritie
 
 The **Hopfield Neural Network (HNN)** method offers a unique approach by framing the optimization problem within a neural network, providing an alternative to traditional methods such as binary integer programming.
 
----
 
 ## Data Structure
 
@@ -38,7 +37,6 @@ The following table summarizes the structure of the input data used for the proj
 
 These elements form the basis for defining the constraints and objectives used in the neural network optimization.
 
----
 
 ## Hopfield Neural Network Method
 
@@ -85,7 +83,6 @@ A **Hopfield Neural Network (HNN)** is a recurrent, fully connected network wher
    - Parameters such as weights and thresholds are tuned through experimentation to ensure the network converges to feasible solutions.
    - Multiple random initial states are tested to avoid local minima and improve the likelihood of finding a global minimum.
 
----
 
 ## Conclusion
 
