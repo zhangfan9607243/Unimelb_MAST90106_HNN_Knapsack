@@ -1,4 +1,4 @@
-# Unimelb MAST90106 & MAST90107 Data Science Project
+# Unimelb MAST90106 & MAST90107 Data Science Project - HNN Knapsack
 
 This project aims to solve a multi-knapsack problem, optimizing store space allocation to maximize profit (KPI1) while minimizing wastage (KPI2).
 
