@@ -53,7 +53,7 @@ The following table summarizes the structure of the input data used for the proj
 ### HNN Formulation
 A Hopfield Neural Network can be used to solve the given problem. A Hopfield Neural Network is a single-layer and fully connected network. Every neuron in the network is a binary threshold unit $X_i$ which can only take two different values: 0 (on) or 1 (off).
 
-Every pair of neurons is connected, and each neuron is not connected with itself. The weight of the connection between neuron k and the neuron is W_{ab} = W_{ba} which is negative if the connection is inhibitory, and positive if the connection is excitatory. Therefore, all the connections in the network can be represented as an N × N symmetric matrix W with zeros on the diagonal.
+Every pair of neurons is connected, and each neuron is not connected with itself. The weight of the connection between neuron k and the neuron is $W_{ab} = W_{ba}$ which is negative if the connection is inhibitory, and positive if the connection is excitatory. Therefore, all the connections in the network can be represented as an N × N symmetric matrix $W$ with zeros on the diagonal.
 
 The initial input of the network can be denoted as: $X(0) = [X_1(0), X_2(0), ...,X_n(0)]$. The values of neurons in the network are subjected to update. When updating the network, at each round, we update neurons asynchronously, i.e., we update neurons one by one, and the sequence is usually random. The updating rule for one neuron at round k can be shown as follows.
 
