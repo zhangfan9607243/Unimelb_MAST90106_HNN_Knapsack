@@ -44,6 +44,7 @@ The following table summarizes the structure of the input data used for the proj
 | **STORE SPACE**              | Total available shelf space in the store                 |
 | **KPI 1**                    | Profit metric to maximize                                |
 | **KPI 2**                    | Wastage metric to minimize                               |
+| **KPI**                      | Combined KPI measure, which is **KPI1 - KPI2**           |
 | **OPT PRIORITY**             | Controls product placement priority                      |
 | **SPECIAL ZONE TAG**         | Indicates if the product can be placed in a special zone |
 | **SPECIAL ZONE STORE SPACE** | Maximum space available for special zone products        |
