@@ -53,59 +53,36 @@ The following table summarizes the structure of the input data used for the proj
 ### HNN Formulation
 A Hopfield Neural Network can be used to solve the given problem. A Hopfield Neural Network is a single-layer and fully connected network. Every neuron in the network is a binary threshold unit $X_i$ which can only take two different values: 0 (on) or 1 (off).
 
-Every pair of neurons is connected, and each neuron is not connected with itself. The weight of the connection between neuron k and the neuron is Wb = Wb which is negative if the connection is inhibitory, and positive if the connection is excitatory. Therefore, all the connections in the network can be represented as an N × N symmetric matrix W with zeros on the diagonal.
+Every pair of neurons is connected, and each neuron is not connected with itself. The weight of the connection between neuron k and the neuron is W_{ab} = W_{ba} which is negative if the connection is inhibitory, and positive if the connection is excitatory. Therefore, all the connections in the network can be represented as an N × N symmetric matrix W with zeros on the diagonal.
 
 The initial input of the network can be denoted as: $X(0) = [X_1(0), X_2(0), ...,X_n(0)]$. The values of neurons in the network are subjected to update. When updating the network, at each round, we update neurons asynchronously, i.e., we update neurons one by one, and the sequence is usually random. The updating rule for one neuron at round k can be shown as follows.
 
-### HNN Knapsack
+For neuron being updated with a threshold θ_i:
+<img width="774" alt="截屏2024-11-07 15 00 07" src="https://github.com/user-attachments/assets/d11fe958-0ec5-4689-bf02-791aaf77ce6d">
 
+When the neurons in the network stop updating, the final values of each neuron are the output of the network, which can be denoted as: $X(k) = [X_1(k), X_2(k), ..., X_n(k)]$.
 
+The stopping criteria becomes the energy function of the network, which is defined as:
+<img width="806" alt="截屏2024-11-07 15 01 26" src="https://github.com/user-attachments/assets/4fba30b4-103b-4c5f-b0a7-b1de9cea31a9">
 
-## Hopfield Neural Network Method
+The updating process will make continuously decrease and converge to a local minimum value, at which the network becomes stable, i.e., the value of neurons won’t change. To reach a global minimum, we should try more initial inputs of the network.
 
-### Overview
+### HNN for Knapsack Problem
+The Hopfield neural network algorithm for knapsack problem has two main components:
+* Establish the energy function: The energy function is the penalty function of our knapsack problem, which contains the optimisation purpose (combined KPI1 and KPI2) and constraints. We would impose penalization parameters and penalization functions on constraints.
+* Minimize the energy function: The minimization process is completed by a mean-field annealing algorithm, where we use a continuous variable between 0 and 1 to represent the solution of the optimisation problem, instead of a 0-1 discrete variable. Then, we solve the continuous variable by mean-field annealing.
 
-A **Hopfield Neural Network (HNN)** is a recurrent, fully connected network where each neuron influences every other neuron. The goal of the HNN is to minimize an **energy function** that encodes the optimization objectives and constraints of the knapsack problem.
+The basic requirement of our project is:
+<img width="806" alt="截屏2024-11-07 15 03 48" src="https://github.com/user-attachments/assets/2ab78c4b-358e-4d5b-91fc-413ecd1a03f2">
+<img width="771" alt="截屏2024-11-07 15 04 03" src="https://github.com/user-attachments/assets/7566fc7e-0d97-4b10-a963-b95522cf1ba9">
 
-### Key Components
+To solve this optimization problem, we can construct a Hopfield neuron network which has the energy function:
+<img width="767" alt="截屏2024-11-07 15 06 23" src="https://github.com/user-attachments/assets/c7ddfd58-0b1f-43f1-adca-bb2cc5bc0555">
 
-1. **Network Structure**
+In practice, we use a continuous variable $V_i ∈ [0, 1]$ to replace discrete $X_i ∈ {0, 1}$, and solve for $V_i$ by mean field annealing approach by iteration:
+<img width="904" alt="截屏2024-11-07 15 07 42" src="https://github.com/user-attachments/assets/5d9f36bc-0563-490c-a20e-4c025db3dd89">
 
-   - The network consists of a single layer of binary threshold units representing each product.
-   - Each neuron \( $X_i$ \) can have two states: **ON (1)** or **OFF (0)**.
-   - Neurons are connected via a symmetric weight matrix \( $W$ \), where \( $W_{ij} = W_{ji}$ ) and diagonal elements are zero.
-2. **Energy Function**
-
-   The energy function for the network is designed to penalize constraint violations:
-
-   $$
-   E = -\frac{1}{2} \sum_{i} \sum_{j} W_{ij} X_i X_j - \sum_i \theta_i X_i
-   $$
-
-   Where:
-
-   - \( $W_{ij}$ \): Weight between neurons \( $i$ \) and \( $j$ \)
-   - \( $\theta_i$ \): Threshold value for neuron \( $i$ \)
-3. **Optimization Process**
-
-   - **Mean-Field Annealing** is used to find the optimal solution:
-
-     - Neuron states are treated as continuous variables between 0 and 1, rather than discrete binary values, for smoother optimization.
-     - The annealing process iteratively updates the neurons to reduce the overall energy of the network.
-   - **State Update Rule**:
-
-     $$
-     X_i(t+1) = 
-          \begin{cases}
-          1 & \text{if } \sum_{j \neq i} W_{ij} X_j(t) + \theta_i \geq 0 \\
-          0 & \text{otherwise}
-          \end{cases}
-     $$
-4. **Parameter Tuning and Convergence**
-
-   - Parameters such as weights and thresholds are tuned through experimentation to ensure the network converges to feasible solutions.
-   - Multiple random initial states are tested to avoid local minima and improve the likelihood of finding a global minimum.
-
+The iteration should run at least 1000 rounds by α = 0.1 and T(k + 1) = 0.99T(k) with T(0) = 10.
 
 ## Conclusion
 
