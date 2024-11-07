@@ -49,36 +49,16 @@ The following table summarizes the structure of the input data used for the proj
 | **SPECIAL ZONE STORE SPACE** | Maximum space available for special zone products        |
 
 
-## HNN Knapsack Formulation
+## HNN Knapsack Method
+### HNN Formulation
+A Hopfield Neural Network can be used to solve the given problem. A Hopfield Neural Network is a single-layer and fully connected network. Every neuron in the network is a binary threshold unit $X_i$ which can only take two different values: 0 (on) or 1 (off).
 
-This project tackles the **multi-knapsack problem**, focusing on optimizing the use of limited store space to:
+Every pair of neurons is connected, and each neuron is not connected with itself. The weight of the connection between neuron k and the neuron is Wb = Wb which is negative if the connection is inhibitory, and positive if the connection is excitatory. Therefore, all the connections in the network can be represented as an N × N symmetric matrix W with zeros on the diagonal.
 
-- **Maximize profit** (KPI1)
-- **Minimize wastage** (KPI2)
+The initial input of the network can be denoted as: $X(0) = [X_1(0), X_2(0), ...,X_n(0)]$. The values of neurons in the network are subjected to update. When updating the network, at each round, we update neurons asynchronously, i.e., we update neurons one by one, and the sequence is usually random. The updating rule for one neuron at round k can be shown as follows.
 
-Retailers face constraints like limited shelf space, product placement priorities, and designated special zones. The goal is to determine the optimal layout for products across multiple stores, ensuring all constraints are respected.
+### HNN Knapsack
 
-The **Hopfield Neural Network (HNN)** method offers a unique approach by framing the optimization problem within a neural network, providing an alternative to traditional methods such as binary integer programming.
-
-
-## Data Structure
-
-The following table summarizes the structure of the input data used for the project:
-
-| **Field**                    | **Description**                                    |
-| ---------------------------------- | -------------------------------------------------------- |
-| **STORE ID**                 | Unique identifier for each store                         |
-| **PRODUCT ID**               | Unique identifier for each product in the store          |
-| **SPACE VALUE**              | Space occupied by the product                            |
-| **STORE SPACE**              | Total available shelf space in the store                 |
-| **KPI 1**                    | Profit metric to maximize                                |
-| **KPI 2**                    | Wastage metric to minimize                               |
-| **OPT PRIORITY**             | Controls product placement priority                      |
-| **SPECIAL ZONE TAG**         | Indicates if the product can be placed in a special zone |
-| **SPECIAL ZONE STORE SPACE** | Maximum space available for special zone products        |
-| **KPI 2 MAX**                | Maximum threshold for the sum of KPI2 values             |
-
-These elements form the basis for defining the constraints and objectives used in the neural network optimization.
 
 
 ## Hopfield Neural Network Method
