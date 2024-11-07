@@ -22,6 +22,7 @@ My team implemented multiple methods for this problem, including:
 
 My work in this team project is to implement a **Hopfield Neural Network (HNN) for Mixed Integer Programming**, which is used as an alternative to classical optimization techniques for its ability to handle complex constraints and explore large solution spaces.
 
+This repository only summarizes my HNN Knapsack algorithm. For complete team projects codes, please refer to: https://github.com/DataScienceDec/Data-Science-Project.
 ## Files Description
 The following is an introduction to the paths and files in this repository:
 * `/data/`:
@@ -84,6 +85,9 @@ In practice, we use a continuous variable $V_i ∈ [0, 1]$ to replace discrete $
 <img width="904" alt="截屏2024-11-07 15 07 42" src="https://github.com/user-attachments/assets/5d9f36bc-0563-490c-a20e-4c025db3dd89">
 
 The iteration should run at least 1000 rounds by α = 0.1 and T(k + 1) = 0.99T(k) with T(0) = 10.
+
+## Performance
+
 
 ## Conclusion
 
