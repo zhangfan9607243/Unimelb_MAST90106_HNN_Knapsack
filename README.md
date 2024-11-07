@@ -32,7 +32,7 @@ The following is an introduction to the paths and files in this repository:
   * `data3b.json`: This is the data with solutions for each store, after running `HNN Knapsack - With Parameter Tunning.ipynb`.
 * `Data Process.ipynb`: Data cleaning and preprocessing.
 * `HNN Knapsack - Without Parameter Tunning.ipynb`: Implementation of HNN Knapsack model without parameter tunning process.
-* `HNN Knapsack - With Parameter Tunning.ipynb`: Implementation of HNN Knapsack model, with parameter tunning process for a better solution.
+* `HNN Knapsack - With Parameter Tunning.ipynb`: Implementation of HNN Knapsack model, with parameter tunning process on penalization hyperparameter $\alpha$ for a better solution.
 
 ## Data Description
 The following table summarizes the structure of the input data used for the project:
@@ -60,11 +60,13 @@ Every pair of neurons is connected, and each neuron is not connected with itself
 The initial input of the network can be denoted as: $X(0) = [X_1(0), X_2(0), ...,X_n(0)]$. The values of neurons in the network are subjected to update. When updating the network, at each round, we update neurons asynchronously, i.e., we update neurons one by one, and the sequence is usually random. The updating rule for one neuron at round k can be shown as follows.
 
 For neuron being updated with a threshold θ_i:
+
 <img width="774" alt="截屏2024-11-07 15 00 07" src="https://github.com/user-attachments/assets/d11fe958-0ec5-4689-bf02-791aaf77ce6d">
 
 When the neurons in the network stop updating, the final values of each neuron are the output of the network, which can be denoted as: $X(k) = [X_1(k), X_2(k), ..., X_n(k)]$.
 
 The stopping criteria becomes the energy function of the network, which is defined as:
+
 <img width="806" alt="截屏2024-11-07 15 01 26" src="https://github.com/user-attachments/assets/4fba30b4-103b-4c5f-b0a7-b1de9cea31a9">
 
 The updating process will make continuously decrease and converge to a local minimum value, at which the network becomes stable, i.e., the value of neurons won’t change. To reach a global minimum, we should try more initial inputs of the network.
@@ -75,22 +77,29 @@ The Hopfield neural network algorithm for knapsack problem has two main componen
 * Minimize the energy function: The minimization process is completed by a mean-field annealing algorithm, where we use a continuous variable between 0 and 1 to represent the solution of the optimisation problem, instead of a 0-1 discrete variable. Then, we solve the continuous variable by mean-field annealing.
 
 The basic requirement of our project is:
+
 <img width="806" alt="截屏2024-11-07 15 03 48" src="https://github.com/user-attachments/assets/2ab78c4b-358e-4d5b-91fc-413ecd1a03f2">
+
 <img width="771" alt="截屏2024-11-07 15 04 03" src="https://github.com/user-attachments/assets/7566fc7e-0d97-4b10-a963-b95522cf1ba9">
 
 To solve this optimization problem, we can construct a Hopfield neuron network which has the energy function:
+
 <img width="767" alt="截屏2024-11-07 15 06 23" src="https://github.com/user-attachments/assets/c7ddfd58-0b1f-43f1-adca-bb2cc5bc0555">
 
 In practice, we use a continuous variable $V_i ∈ [0, 1]$ to replace discrete $X_i ∈ {0, 1}$, and solve for $V_i$ by mean field annealing approach by iteration:
+
 <img width="904" alt="截屏2024-11-07 15 07 42" src="https://github.com/user-attachments/assets/5d9f36bc-0563-490c-a20e-4c025db3dd89">
 
 The iteration should run at least 1000 rounds by α = 0.1 and T(k + 1) = 0.99T(k) with T(0) = 10.
 
 ## Performance
-
+The following is an overview of the performance of HNN Knapsack method:
+* **Run Time**: For a store with average 60 products and 15 options per product, the average run time is about 300 seconds, which is much longer than the other methods that my team members tried.
+* **Solution**: Basically, this method can produce a valid solution: each product has one and only one selection.
+* **Optimization**: The combined KPI measure that this method selected is generally higher than the other methods that my team members tried.
 
 ## Conclusion
 
 The **Hopfield Neural Network** provides an innovative way to solve the multi-knapsack problem by encoding constraints directly into the energy function. With proper tuning, this method demonstrates promising results in finding optimal or near-optimal solutions while managing complex constraints.
 
-For detailed experimentation results and comparisons with other optimization methods, please refer to the project report.
+For detailed experimentation results and comparisons with other optimization methods, please refer to the complete project repository.
