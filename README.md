@@ -1,12 +1,55 @@
 # Unimelb MAST90106 & MAST90107 Data Science Project - HNN Knapsack
 
-This project is the capston project of Unimelb Master of Data Science program. The project team that I was in was assigned a project called "Solving Floor Space Allocation as a Large-Scale Optimisation Problem".
+## Acknowledgement
+I would like to thank the teaching team and staff in Unimelb Data Science, as well as the Scalene Group, for providing us the opportunity to work on this project and for their valuable guidance throughout.
 
-This project aims to solve a multi-knapsack problem, optimizing store space allocation to maximize profit (KPI1) while minimizing wastage (KPI2), with a series of equality and inequality constrains.
+## Project Introduction
+This project is the capston project of Unimelb Master of Data Science program. The project team that I was in was assigned a project called "Solving Floor Space Allocation as a Large-Scale Optimisation Problem", which is in collaboration with the Scalene Group. 
 
-This is a team project, and my work in this project is to implement a **Hopfield Neural Network (HNN) for Mixed Integer Programming**, which is used as an alternative to classical optimization techniques for its ability to handle complex constraints and explore large solution spaces.
+The project is a multi-knapsack problem: Optimizing store space allocation to **Maximize Profit (KPI1)** while **Minimizing Wastage (KPI2)**, with a series of equality and inequality constrains:
+* Equality Constrain:
+  * Each product can only have one space allocation plan. 
+* Inequality constrains:
+  * The total space allocated for all products must be less than or equal to the store's total area.
+  * Sum of the space value of all products eligible for the special zone should be less than or equal to the total number of special zones in the store.
+  * The largest space value for a given product can’t be used until all other products in the store are of equal opt priority.
 
-## Problem Statement
+My team implemented multiple methods for this problem, including: 
+* Branch & Bound
+* Simulated Annealing
+* Greedy Randomised Adaptive Search Procedure
+* Hopfield Neural Network
+
+My work in this team project is to implement a **Hopfield Neural Network (HNN) for Mixed Integer Programming**, which is used as an alternative to classical optimization techniques for its ability to handle complex constraints and explore large solution spaces.
+
+## Files Description
+The following is an introduction to the paths and files in this repository:
+* `/data/`:
+  * `data1.csv`: This is a small sample of original project data with only 10 stores. The complete data with nearly 600 stores can be downloaded by the link: https://pan.baidu.com/s/1AZUM0lzmBygVXvWQI5aB9Q?pwd=1234.
+  * `data2.json`: This is cleaned and preprocessed data in a dictionary format, after running `Data Process.ipynb`.
+  * `data3a.json`: This is the data with solutions for each store, after running `HNN Knapsack - Without Parameter Tunning.ipynb`.
+  * `data3b.json`: This is the data with solutions for each store, after running `HNN Knapsack - With Parameter Tunning.ipynb`.
+* `Data Process.ipynb`: Data cleaning and preprocessing.
+* `HNN Knapsack - Without Parameter Tunning.ipynb`: Implementation of HNN Knapsack model without parameter tunning process.
+* `HNN Knapsack - With Parameter Tunning.ipynb`: Implementation of HNN Knapsack model, with parameter tunning process for a better solution.
+
+## Data Description
+The following table summarizes the structure of the input data used for the project:
+
+| **Field**                    | **Description**                                    |
+| ---------------------------------- | -------------------------------------------------------- |
+| **STORE ID**                 | Unique identifier for each store                         |
+| **PRODUCT ID**               | Unique identifier for each product in the store          |
+| **SPACE VALUE**              | Space occupied by the product                            |
+| **STORE SPACE**              | Total available shelf space in the store                 |
+| **KPI 1**                    | Profit metric to maximize                                |
+| **KPI 2**                    | Wastage metric to minimize                               |
+| **OPT PRIORITY**             | Controls product placement priority                      |
+| **SPECIAL ZONE TAG**         | Indicates if the product can be placed in a special zone |
+| **SPECIAL ZONE STORE SPACE** | Maximum space available for special zone products        |
+
+
+## HNN Knapsack Formulation
 
 This project tackles the **multi-knapsack problem**, focusing on optimizing the use of limited store space to:
 
